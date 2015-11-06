@@ -6,6 +6,7 @@ import random
 def init(request):
     if User.objects.filter(username='admin'):
         context = {'init':False}
+        
     else:
         context = {'init':True} 
         
@@ -27,7 +28,7 @@ def init(request):
         
         
            
-    #Python
+        #Python
         pythonCategory = popCategory('Python')
         popPage(pythonCategory, '官方 Python 教材', 'http://docs.python.org/2/tutorial/')
         popPage(category=pythonCategory,
@@ -64,12 +65,11 @@ def init(request):
                 title='Flask 框架',
                 url='http://flask.pocoo.org')
     
-    
+    # Retrieve everything
     users = User.objects.all()
-    categories=Category.objects.all()
-    pages=Page.objects.all()
-    
-    context.update({'users':users,'categories':categories,'pages':pages})
+    categories = Category.objects.all()
+    pages = Page.objects.all()
+    context.update({'users':users, 'categories':categories, 'pages':pages})
     return render(request, 'init/init.html', context)
 
 
